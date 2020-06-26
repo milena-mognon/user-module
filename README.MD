@@ -1,5 +1,6 @@
-<img alt="GoStack" src="./.github/undraw_programmer_imem.svg" />
-
+<h3 align="center">
+<img alt="GoStack" width="200px" src="./.github/undraw_programmer_imem.svg" />
+</h3>
 <h3 align="center">
   Módulo de Usuário
 </h3>
@@ -45,12 +46,12 @@ Funcionalidades testadas.
 3. Rode `yarn` para instalar as dependências;
 4. Rode `yarn dev:server` para iniciar o servidor de desenvolvimento;
 
-### Configuração do banco de dados
+### ☸ Configuração do banco de dados
 
 1. Crie uma base de dados do Postgres;
 2. No arquivo **ormconfig.json** modifique as credenciais (host, database, user, password);
 3. Rode `yarn typeorm migration:run` para rodas as migrations;
 
-### Testes
+### 🧪 Testes
 
 1. Rode `yarn test` para executar os testes;
