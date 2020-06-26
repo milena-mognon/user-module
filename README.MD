@@ -46,7 +46,7 @@ Funcionalidades testadas.
 3. Rode `yarn` para instalar as dependências;
 4. Rode `yarn dev:server` para iniciar o servidor de desenvolvimento;
 
-### ☸ Configuração do banco de dados
+### ⚙ Configuração do banco de dados
 
 1. Crie uma base de dados do Postgres;
 2. No arquivo **ormconfig.json** modifique as credenciais (host, database, user, password);
