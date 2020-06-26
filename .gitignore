@@ -1,4 +1,6 @@
+coverage/
 node_modules
 tmp/*
 !tmp/.gitkeep
 !tmp/uploads
+

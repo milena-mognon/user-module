@@ -1,5 +1,5 @@
 <h3 align="center">
-<img alt="GoStack" width="200px" src="./.github/undraw_programmer_imem.svg" />
+<img alt="GoStack" width="400px" src="./.github/undraw_programmer_imem.svg" />
 </h3>
 <h3 align="center">
   Módulo de Usuário
