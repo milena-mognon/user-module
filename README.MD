@@ -1,5 +1,5 @@
 <h3 align="center">
-<img alt="GoStack" width="400px" src="./.github/undraw_programmer_imem.svg" />
+<img alt="dev" width="400px" src="./.github/undraw_programmer_imem.svg" />
 </h3>
 <h3 align="center">
   Módulo de Usuário
@@ -32,6 +32,7 @@ Funcionalidades testadas.
 - Jest - (Estrutura de teste de JavaScript)
 - Nodemailer - (Lib para envio de e-mails)
 - Ethereal - (Serviço SMTP fake)
+- Mailtrap - (Serviço SMTP fake)
 - Multer - (Lib para upload de arquivos)
 - Tsyringe - (Lib para injeção de dependências)
 - Postgres - (Banco de dados relacional)
@@ -51,6 +52,11 @@ Funcionalidades testadas.
 1. Crie uma base de dados do Postgres;
 2. No arquivo **ormconfig.json** modifique as credenciais (host, database, user, password);
 3. Rode `yarn typeorm migration:run` para rodas as migrations;
+
+### 📧 Configuração para envio de email
+
+1. No arquivo **src/shared/container/providers/index.ts** escolha o provedor [Mailtrap ou Ethereal] (default: Ethereal);
+2. Se preferir usar Mailtrap, no arquivo **src/shared/container/providers/MailProvider/implementations/MailtrapProvider.ts** altere as credenciais (user e password) pelas disponibilizadas pelo Mailtrap;
 
 ### 🧪 Testes
 
