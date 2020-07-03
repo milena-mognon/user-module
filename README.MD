@@ -15,6 +15,7 @@ Módulo de usuário com algumas funcionalidades prontas, tais como:
 - Envio de email para reset de senha;
 - Reset de senha;
 - Upload de imagem (avatar do usuário);
+- Envio de notificações;
 
 Todo desenvolvido visando a fácil manutenção, boas práticas e facilidade em caso de troca de alguma das tecnologias.
 
@@ -38,6 +39,7 @@ Funcionalidades testadas.
 - Postgres - (Banco de dados relacional)
 - TypeORM - (ORM)
 - Json Web Token (técnica para autenticação)
+- MongoDB - (Banco de dados não relacional)
 - ...
 
 ## 🚀 Instalação e execução
@@ -57,6 +59,33 @@ Funcionalidades testadas.
 
 1. No arquivo **src/shared/container/providers/index.ts** escolha o provedor [Mailtrap ou Ethereal] (default: Ethereal);
 2. Se preferir usar Mailtrap, no arquivo **src/shared/container/providers/MailProvider/implementations/MailtrapProvider.ts** altere as credenciais (user e password) pelas disponibilizadas pelo Mailtrap;
+
+### 🔔 Configurações para envio de notificações
+
+1. Crie uma base de dados do MongoDB
+2. No arquivo **ormconfig.json** modifique o nome database e host, se necessário.
+
+#### Exemplo de código para envio de notificações
+
+Adiciona em uma classe através de injeção de dependência
+
+```ts
+constructor(
+    @inject('NotificationsRepository')
+    private notificationsRepository: INotificationsRepository,
+  ) {}
+```
+
+Envia a notificação passando os dados necessários.
+
+```ts
+await this.notificationsRepository.create({
+  recipient_id,
+  content: `Conteúdo da notificação`,
+});
+```
+
+OBS: Os dados enviados podem váriar, basta modificar no modulo de notifications (Schema, Repository, etc).
 
 ### 🧪 Testes
 

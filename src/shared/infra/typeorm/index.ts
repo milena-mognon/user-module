@@ -1,3 +1,13 @@
-import { createConnection } from 'typeorm';
+import { createConnections } from 'typeorm';
 
-createConnection();
+/**
+ * Used for multiple connections
+ * EX: postgres and mongo
+ */
+createConnections();
+
+/**
+ * Used for ony one connection
+ */
+
+// createConnection();
