@@ -16,6 +16,7 @@ Módulo de usuário com algumas funcionalidades prontas, tais como:
 - Reset de senha;
 - Upload de imagem (avatar do usuário);
 - Envio de notificações;
+- Cache
 
 Todo desenvolvido visando a fácil manutenção, boas práticas e facilidade em caso de troca de alguma das tecnologias.
 
@@ -34,20 +35,27 @@ Funcionalidades testadas.
 - Nodemailer - (Lib para envio de e-mails)
 - Ethereal - (Serviço SMTP fake)
 - Mailtrap - (Serviço SMTP fake)
+- SES - (Serviço de envio de email - AWS)
 - Multer - (Lib para upload de arquivos)
 - Tsyringe - (Lib para injeção de dependências)
 - Postgres - (Banco de dados relacional)
 - TypeORM - (ORM)
 - Json Web Token (técnica para autenticação)
 - MongoDB - (Banco de dados não relacional)
+- Redis - (Banco de dados chave-valor)
+- S3 - (Serviço de armazenamento - AWS)
+- Celebrate - (Middleware de validação)
 - ...
+
+* Serviços pagos da AWS, apenas para sistema em produção.
 
 ## 🚀 Instalação e execução
 
 1. Faça um clone desse repositório;
 2. Entre na pasta do projeto pelo terminal;
 3. Rode `yarn` para instalar as dependências;
-4. Rode `yarn dev:server` para iniciar o servidor de desenvolvimento;
+4. Crie um arquivo **.env** (use **.env.example** como modelo) e modifique o valor das variáveis;
+5. Rode `yarn dev:server` para iniciar o servidor de desenvolvimento;
 
 ### ⚙ Configuração do banco de dados
 
@@ -57,8 +65,9 @@ Funcionalidades testadas.
 
 ### 📧 Configuração para envio de email
 
-1. No arquivo **src/shared/container/providers/index.ts** escolha o provedor [Mailtrap ou Ethereal] (default: Ethereal);
-2. Se preferir usar Mailtrap, no arquivo **src/shared/container/providers/MailProvider/implementations/MailtrapProvider.ts** altere as credenciais (user e password) pelas disponibilizadas pelo Mailtrap;
+1. No arquivo .env, escolha o provider de email (ethereal, mailtrap ou ses).
+   Ex: MAIL_DRIVER=ethereal;
+2. Se necessário, descomente e/ou altere as credenciais;
 
 ### 🔔 Configurações para envio de notificações
 
@@ -86,6 +95,41 @@ await this.notificationsRepository.create({
 ```
 
 OBS: Os dados enviados podem váriar, basta modificar no modulo de notifications (Schema, Repository, etc).
+
+### ⚙ Configuração para salvar cache
+
+1. Rodar o Redis;
+2. Alterar as credenciais no arquivo .env (REDIS_HOST, REDIS_POST, REDIS_PASS);
+
+#### Exemplo de código para salvar cache
+
+Adiciona em uma classe através de injeção de dependência
+
+```ts
+constructor(
+    @inject('CacheProvider')
+    private cacheProvider: ICacheProvider,
+  ) {}
+```
+
+Salva algum valor em cache:
+
+```ts
+await this.cacheProvider.save(`nome-da-key`, value);
+```
+
+Deleta/Invalida o cache:
+
+```ts
+await this.cacheProvider.invalidate('nome-da-key');
+await this.cacheProvider.invalidatePrefix('nome-da-key:');
+```
+
+Recupera os dados:
+
+```ts
+let users = await this.cacheProvider.recover<User[]>(`nome-da-key`);
+```
 
 ### 🧪 Testes
 
