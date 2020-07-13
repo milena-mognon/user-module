@@ -47,7 +47,7 @@ Funcionalidades testadas.
 - Celebrate - (Middleware de validação)
 - ...
 
-* Serviços pagos da AWS, apenas para sistema em produção.
+\* Serviços pagos da AWS, apenas para sistema em produção.
 
 ## 🚀 Instalação e execução
 
